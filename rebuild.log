@@ -1,0 +1,4 @@
+make: Entering directory '/home/davidb/repos/node-multi-hashing/build'
+  CXX(target) Release/obj.target/multihashing/multihashing.o
+multihashing.target.mk:147: recipe for target 'Release/obj.target/multihashing/multihashing.o' failed
+make: Leaving directory '/home/davidb/repos/node-multi-hashing/build'
