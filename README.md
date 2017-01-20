@@ -3,7 +3,8 @@ blockgen-multi-hashing
 
 Based on [node-multi-hashing](https://github.com/UNOMP/node-multi-hashing)
 
-Updated and maintain by [BlockGen](http://blockgen.com)
+Updated and maintained by [BlockGen](http://blockgen.com)
+
 
 [![NPM](https://nodei.co/npm/blockgen-multi-hashing.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/blockgen-multi-hashing/)
 
