@@ -5,6 +5,8 @@ blockgen-multi-hashing
 
 Cryptocurrency hashing functions for Node.js.
 
+Tested and working on 6.9.4 LTS.
+
 Algorithms
 ----------
 * quark
