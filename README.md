@@ -5,7 +5,6 @@ Based on [node-multi-hashing](https://github.com/UNOMP/node-multi-hashing)
 
 Updated and maintained by [BlockGen](http://blockgen.com)
 
-
 [![NPM](https://nodei.co/npm/blockgen-multi-hashing.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/blockgen-multi-hashing/)
 
 Cryptocurrency hashing functions for Node.js.
