@@ -1,11 +1,11 @@
-node-multi-hashing
+blockgen-multi-hashing
 ===============
 
-[![Build Status](https://travis-ci.org/zone117x/node-multi-hashing.png?branch=master)](https://travis-ci.org/zone117x/node-multi-hashing)
+[![NPM](https://nodei.co/npm/blockgen-merged-pooler.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/blockgen-merged-pooler/)
 
-[![NPM](https://nodei.co/npm/multi-hashing.png?downloads=true&stars=true)](https://nodei.co/npm/multi-hashing/)
+Cryptocurrency hashing functions for Node.js.
 
-Cryptocurrency hashing functions for node.js.
+Tested and working on Node.js 6.9.4 LTS
 
 
 Algorithms
@@ -68,6 +68,9 @@ console.log(hashedData);
 
 Credits
 -------
+* [Sigwo](https://github.com/sigwo) (Steven G)  - Maintained and updated node-multi-hashing for several years in which this version is a fork of. 
+* [Zone117x](https://github.com/zone117x) (Matthew Little) - Original creator of node-multi-hashing
+
 * [NSA](http://www.nsa.gov/) and [NIST](http://www.nist.gov/) for creation or sponsoring creation of SHA2 and SHA3 algos
 * [Keccak](http://en.wikipedia.org/wiki/Keccak) - Guido Bertoni, Joan Daemen, Michaël Peeters, and Gilles Van Assche
 * [Skein](http://en.wikipedia.org/wiki/Skein_(hash_function)) - Bruce Schneier, Stefan Lucks, Niels Ferguson, Doug Whiting, Mihir Bellare, Tadayoshi Kohno, Jon Callas and Jesse Walker.
