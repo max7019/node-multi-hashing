@@ -2,6 +2,7 @@
 #include <node_buffer.h>
 #include <v8.h>
 #include <stdint.h>
+#include <nan.h>
 
 extern "C" {
     #include "bcrypt.h"
@@ -66,8 +67,10 @@ void quark(const FunctionCallbackInfo<v8::Value> &args) {
 
     quark_hash(input, output, input_len);
 
-		Local<ArrayBuffer> buff = ArrayBuffer::New(isolate, output, 32);
-    args.GetReturnValue().Set(  buff );
+		Nan::MaybeLocal<Object> mlobj = Nan::NewBuffer(output, 32);
+		Local<Object> buff;
+		mlobj.ToLocal(&buff);
+    args.GetReturnValue().Set(  handle_scope.Escape(buff) );
 }
 
 void x11(const FunctionCallbackInfo<v8::Value> &args) {
@@ -94,7 +97,9 @@ void x11(const FunctionCallbackInfo<v8::Value> &args) {
 
     x11_hash(input, output, input_len);
 
-		Local<ArrayBuffer> buff = ArrayBuffer::New(isolate, output, 32);
+		Nan::MaybeLocal<Object> mlobj = Nan::NewBuffer(output, 32);
+Local<Object> buff;
+mlobj.ToLocal(&buff);
     args.GetReturnValue().Set(  handle_scope.Escape(buff) );
 }
 
@@ -121,7 +126,9 @@ void x5(const FunctionCallbackInfo<v8::Value> &args) {
 
     x11_hash(input, output, input_len);
 
-		Local<ArrayBuffer> buff = ArrayBuffer::New(isolate, output, 32);
+		Nan::MaybeLocal<Object> mlobj = Nan::NewBuffer(output, 32);
+Local<Object> buff;
+mlobj.ToLocal(&buff);
     args.GetReturnValue().Set(  handle_scope.Escape(buff) );
 }
 
@@ -154,7 +161,9 @@ void scrypt(const FunctionCallbackInfo<v8::Value> &args) {
 
    scrypt_N_R_1_256(input, output, nValue, rValue, input_len);
 
-	 Local<ArrayBuffer> buff = ArrayBuffer::New(isolate, output, 32);
+	 Nan::MaybeLocal<Object> mlobj = Nan::NewBuffer(output, 32);
+Local<Object> buff;
+mlobj.ToLocal(&buff);
 	 args.GetReturnValue().Set(  handle_scope.Escape(buff) );
 }
 
@@ -181,7 +190,9 @@ void neoscrypt_hash(const FunctionCallbackInfo<v8::Value> &args) {
 
     neoscrypt(input, output, 0);
 
-		Local<ArrayBuffer> buff = ArrayBuffer::New(isolate, output, 32);
+		Nan::MaybeLocal<Object> mlobj = Nan::NewBuffer(output, 32);
+Local<Object> buff;
+mlobj.ToLocal(&buff);
  	  args.GetReturnValue().Set(  handle_scope.Escape(buff) );
 }
 
@@ -216,7 +227,9 @@ void scryptn(const FunctionCallbackInfo<v8::Value> &args) {
    scrypt_N_R_1_256(input, output, N, 1, input_len); //hardcode for now to R=1 for now
 
 
-	 Local<ArrayBuffer> buff = ArrayBuffer::New(isolate, output, 32);
+	 Nan::MaybeLocal<Object> mlobj = Nan::NewBuffer(output, 32);
+Local<Object> buff;
+mlobj.ToLocal(&buff);
 	 args.GetReturnValue().Set(  handle_scope.Escape(buff) );
 }
 
@@ -256,7 +269,9 @@ void scryptjane(const FunctionCallbackInfo<v8::Value> &args) {
 
     scryptjane_hash(input, input_len, (uint32_t *)output, GetNfactorJane(timestamp, nChainStartTime, nMin, nMax));
 
-		Local<ArrayBuffer> buff = ArrayBuffer::New(isolate, output, 32);
+		Nan::MaybeLocal<Object> mlobj = Nan::NewBuffer(output, 32);
+Local<Object> buff;
+mlobj.ToLocal(&buff);
  	  args.GetReturnValue().Set(  handle_scope.Escape(buff) );
 }
 
@@ -282,7 +297,9 @@ void yescrypt(const FunctionCallbackInfo<v8::Value> &args) {
 
    yescrypt_hash(input, output);
 
-	 Local<ArrayBuffer> buff = ArrayBuffer::New(isolate, output, 32);
+	 Nan::MaybeLocal<Object> mlobj = Nan::NewBuffer(output, 32);
+Local<Object> buff;
+mlobj.ToLocal(&buff);
  	 args.GetReturnValue().Set(  handle_scope.Escape(buff) );
 }
 
@@ -310,7 +327,9 @@ void keccak(const FunctionCallbackInfo<v8::Value> &args) {
 
     keccak_hash(input, output, dSize);
 
-		Local<ArrayBuffer> buff = ArrayBuffer::New(isolate, output, 32);
+		Nan::MaybeLocal<Object> mlobj = Nan::NewBuffer(output, 32);
+Local<Object> buff;
+mlobj.ToLocal(&buff);
   	args.GetReturnValue().Set(  handle_scope.Escape(buff) );
 }
 
@@ -336,7 +355,9 @@ void bcrypt(const FunctionCallbackInfo<v8::Value> &args) {
 
     bcrypt_hash(input, output);
 
-		Local<ArrayBuffer> buff = ArrayBuffer::New(isolate, output, 32);
+		Nan::MaybeLocal<Object> mlobj = Nan::NewBuffer(output, 32);
+Local<Object> buff;
+mlobj.ToLocal(&buff);
   	args.GetReturnValue().Set(  handle_scope.Escape(buff) );
 }
 
@@ -363,7 +384,9 @@ void skein(const FunctionCallbackInfo<v8::Value> &args) {
 
     skein_hash(input, output, input_len);
 
-		Local<ArrayBuffer> buff = ArrayBuffer::New(isolate, output, 32);
+		Nan::MaybeLocal<Object> mlobj = Nan::NewBuffer(output, 32);
+Local<Object> buff;
+mlobj.ToLocal(&buff);
   	args.GetReturnValue().Set(  handle_scope.Escape(buff) );
 }
 
@@ -391,7 +414,9 @@ void groestl(const FunctionCallbackInfo<v8::Value> &args) {
 
     groestl_hash(input, output, input_len);
 
-		Local<ArrayBuffer> buff = ArrayBuffer::New(isolate, output, 32);
+		Nan::MaybeLocal<Object> mlobj = Nan::NewBuffer(output, 32);
+Local<Object> buff;
+mlobj.ToLocal(&buff);
   	args.GetReturnValue().Set(  handle_scope.Escape(buff) );
 }
 
@@ -419,7 +444,9 @@ void groestlmyriad(const FunctionCallbackInfo<v8::Value> &args) {
 
     groestlmyriad_hash(input, output, input_len);
 
-		Local<ArrayBuffer> buff = ArrayBuffer::New(isolate, output, 32);
+		Nan::MaybeLocal<Object> mlobj = Nan::NewBuffer(output, 32);
+Local<Object> buff;
+mlobj.ToLocal(&buff);
   	args.GetReturnValue().Set(  handle_scope.Escape(buff) );
 }
 
@@ -447,7 +474,9 @@ void blake(const FunctionCallbackInfo<v8::Value> &args) {
 
     blake_hash(input, output, input_len);
 
-		Local<ArrayBuffer> buff = ArrayBuffer::New(isolate, output, 32);
+		Nan::MaybeLocal<Object> mlobj = Nan::NewBuffer(output, 32);
+Local<Object> buff;
+mlobj.ToLocal(&buff);
   	args.GetReturnValue().Set(  handle_scope.Escape(buff) );
 }
 
@@ -473,7 +502,9 @@ void dcrypt(const FunctionCallbackInfo<v8::Value> &args) {
 
     dcrypt_hash(input, output, input_len);
 
-		Local<ArrayBuffer> buff = ArrayBuffer::New(isolate, output, 32);
+		Nan::MaybeLocal<Object> mlobj = Nan::NewBuffer(output, 32);
+Local<Object> buff;
+mlobj.ToLocal(&buff);
   	args.GetReturnValue().Set(  handle_scope.Escape(buff) );
 }
 
@@ -500,7 +531,9 @@ void fugue(const FunctionCallbackInfo<v8::Value> &args) {
 
     fugue_hash(input, output, input_len);
 
-		Local<ArrayBuffer> buff = ArrayBuffer::New(isolate, output, 32);
+		Nan::MaybeLocal<Object> mlobj = Nan::NewBuffer(output, 32);
+Local<Object> buff;
+mlobj.ToLocal(&buff);
   	args.GetReturnValue().Set(  handle_scope.Escape(buff) );
 }
 
@@ -529,7 +562,9 @@ void qubit(const FunctionCallbackInfo<v8::Value> &args) {
 
     qubit_hash(input, output, input_len);
 
-		Local<ArrayBuffer> buff = ArrayBuffer::New(isolate, output, 32);
+		Nan::MaybeLocal<Object> mlobj = Nan::NewBuffer(output, 32);
+Local<Object> buff;
+mlobj.ToLocal(&buff);
   	args.GetReturnValue().Set(  handle_scope.Escape(buff) );
 }
 
@@ -556,7 +591,9 @@ void s3(const FunctionCallbackInfo<v8::Value> &args) {
 
     s3_hash(input, output, input_len);
 
-		Local<ArrayBuffer> buff = ArrayBuffer::New(isolate, output, 32);
+		Nan::MaybeLocal<Object> mlobj = Nan::NewBuffer(output, 32);
+Local<Object> buff;
+mlobj.ToLocal(&buff);
   	args.GetReturnValue().Set(  handle_scope.Escape(buff) );
 }
 
@@ -584,7 +621,9 @@ void hefty1(const FunctionCallbackInfo<v8::Value> &args) {
 
     hefty1_hash(input, output, input_len);
 
-		Local<ArrayBuffer> buff = ArrayBuffer::New(isolate, output, 32);
+		Nan::MaybeLocal<Object> mlobj = Nan::NewBuffer(output, 32);
+Local<Object> buff;
+mlobj.ToLocal(&buff);
   	args.GetReturnValue().Set(  handle_scope.Escape(buff) );
 }
 
@@ -612,7 +651,9 @@ void shavite3(const FunctionCallbackInfo<v8::Value> &args) {
 
     shavite3_hash(input, output, input_len);
 
-		Local<ArrayBuffer> buff = ArrayBuffer::New(isolate, output, 32);
+		Nan::MaybeLocal<Object> mlobj = Nan::NewBuffer(output, 32);
+Local<Object> buff;
+mlobj.ToLocal(&buff);
 		args.GetReturnValue().Set(  handle_scope.Escape(buff) );
 }
 
@@ -652,7 +693,9 @@ void cryptonight(const FunctionCallbackInfo<v8::Value> &args) {
     else
         cryptonight_hash(input, output, input_len);
 
-		Local<ArrayBuffer> buff = ArrayBuffer::New(isolate, output, 32);
+		Nan::MaybeLocal<Object> mlobj = Nan::NewBuffer(output, 32);
+Local<Object> buff;
+mlobj.ToLocal(&buff);
 		args.GetReturnValue().Set(  handle_scope.Escape(buff) );
 }
 
@@ -680,7 +723,9 @@ void x13(const FunctionCallbackInfo<v8::Value> &args) {
 
     x13_hash(input, output, input_len);
 
-		Local<ArrayBuffer> buff = ArrayBuffer::New(isolate, output, 32);
+		Nan::MaybeLocal<Object> mlobj = Nan::NewBuffer(output, 32);
+Local<Object> buff;
+mlobj.ToLocal(&buff);
 		args.GetReturnValue().Set(  handle_scope.Escape(buff) );
 }
 
@@ -707,7 +752,9 @@ void x14(const FunctionCallbackInfo<v8::Value> &args) {
 
     x14_hash(input, output, input_len);
 
-		Local<ArrayBuffer> buff = ArrayBuffer::New(isolate, output, 32);
+		Nan::MaybeLocal<Object> mlobj = Nan::NewBuffer(output, 32);
+Local<Object> buff;
+mlobj.ToLocal(&buff);
 		args.GetReturnValue().Set(  handle_scope.Escape(buff) );
 }
 
@@ -752,7 +799,9 @@ void boolberry(const FunctionCallbackInfo<v8::Value> &args) {
 
     boolberry_hash(input, input_len, scratchpad, spad_len, output, height);
 
-		Local<ArrayBuffer> buff = ArrayBuffer::New(isolate, output, 32);
+		Nan::MaybeLocal<Object> mlobj = Nan::NewBuffer(output, 32);
+Local<Object> buff;
+mlobj.ToLocal(&buff);
 		args.GetReturnValue().Set(  handle_scope.Escape(buff) );
 }
 
@@ -779,7 +828,9 @@ void nist5(const FunctionCallbackInfo<v8::Value> &args) {
 
     nist5_hash(input, output, input_len);
 
-		Local<ArrayBuffer> buff = ArrayBuffer::New(isolate, output, 32);
+		Nan::MaybeLocal<Object> mlobj = Nan::NewBuffer(output, 32);
+Local<Object> buff;
+mlobj.ToLocal(&buff);
 		args.GetReturnValue().Set(  handle_scope.Escape(buff) );
 }
 
@@ -806,7 +857,9 @@ void sha1(const FunctionCallbackInfo<v8::Value> &args) {
 
     sha1_hash(input, output, input_len);
 
-		Local<ArrayBuffer> buff = ArrayBuffer::New(isolate, output, 32);
+		Nan::MaybeLocal<Object> mlobj = Nan::NewBuffer(output, 32);
+Local<Object> buff;
+mlobj.ToLocal(&buff);
 		args.GetReturnValue().Set(  handle_scope.Escape(buff) );
 }
 
@@ -832,7 +885,9 @@ void x15(const FunctionCallbackInfo<v8::Value> &args) {
 
     x15_hash(input, output, input_len);
 
-		Local<ArrayBuffer> buff = ArrayBuffer::New(isolate, output, 32);
+		Nan::MaybeLocal<Object> mlobj = Nan::NewBuffer(output, 32);
+Local<Object> buff;
+mlobj.ToLocal(&buff);
 		args.GetReturnValue().Set(  handle_scope.Escape(buff) );
 }
 
@@ -859,7 +914,9 @@ void fresh(const FunctionCallbackInfo<v8::Value> &args) {
 
     fresh_hash(input, output, input_len);
 
-		Local<ArrayBuffer> buff = ArrayBuffer::New(isolate, output, 32);
+		Nan::MaybeLocal<Object> mlobj = Nan::NewBuffer(output, 32);
+Local<Object> buff;
+mlobj.ToLocal(&buff);
 		args.GetReturnValue().Set(  handle_scope.Escape(buff) );
 }
 
@@ -887,7 +944,9 @@ void jh(const FunctionCallbackInfo<v8::Value> &args) {
 
     jh_hash(input, output, input_len);
 
-		Local<ArrayBuffer> buff = ArrayBuffer::New(isolate, output, 32);
+		Nan::MaybeLocal<Object> mlobj = Nan::NewBuffer(output, 32);
+Local<Object> buff;
+mlobj.ToLocal(&buff);
 		args.GetReturnValue().Set(  handle_scope.Escape(buff) );
 }
 
@@ -915,7 +974,9 @@ void c11(const FunctionCallbackInfo<v8::Value> &args) {
 
     c11_hash(input, output);
 
-		Local<ArrayBuffer> buff = ArrayBuffer::New(isolate, output, 32);
+		Nan::MaybeLocal<Object> mlobj = Nan::NewBuffer(output, 32);
+Local<Object> buff;
+mlobj.ToLocal(&buff);
 		args.GetReturnValue().Set(  handle_scope.Escape(buff) );
 }
 

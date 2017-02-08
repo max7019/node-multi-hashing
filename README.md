@@ -1,11 +1,12 @@
-node-multi-hashing
+node-multi-hashing branch
 ===============
 
-[![Build Status](https://travis-ci.org/zone117x/node-multi-hashing.png?branch=master)](https://travis-ci.org/zone117x/node-multi-hashing)
 
-[![NPM](https://nodei.co/npm/multi-hashing.png?downloads=true&stars=true)](https://nodei.co/npm/multi-hashing/)
 
-Cryptocurrency hashing functions for node.js.
+Cryptocurrency hashing functions for node.js updated for node.js 7.4.0.
+This is the non-canonical version and must be installed loacally.
+
+This library depends on nan: https://github.com/nodejs/nan
 
 
 Algorithms
@@ -33,15 +34,18 @@ Usage
 -----
 
 Install
+clone this repo into your local development environment.
+Then install nan as per https://github.com/nodejs/nan
+
 
 ```bash
-npm install multi-hashing
+npm install /local/path/multi-hashing
 ```
 
 So far this native Node.js addon can do the following hashing algos
 
 ```javascript
-var multiHashing = require('multi-hashing');
+var multiHashing = require('unomp-multi-hashing');
 
 var algorithms = ['quark', 'x11', 'scrypt', 'scryptn', 'scryptjane', 'keccak', 'bcrypt', 'skein', 'blake'];
 
